@@ -33,8 +33,17 @@
 ### Решение:
 
 ```
-
+select concat(sotr.first_name , ' ', sotr.last_name) as сотрудник,  c2.city as город, COUNT(c.customer_id) as "покупатели"
+from staff sotr
+join store s2 on s2.store_id = sotr.store_id 
+join customer c on c.store_id = s2.store_id
+join address a on a.address_id = s2.address_id 
+join city c2 on c2.city_id = a.city_id 
+group by sotr.staff_id, c2.city_id 
+having COUNT(c.customer_id) > 300;
 ```
+![Снимок90](https://github.com/Makarov-Denis/12-04-SQL-2/assets/148921246/c88fc3f2-9a7a-4763-93ad-cb5569d02694)
+
 
 ---
 
